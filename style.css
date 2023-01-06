@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant&family=DM+Sans&family=Inter:wght@400;500;600;800&family=Poppins:wght@600;700&display=swap");
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-clr: red;
+  --transition: all 0.2s linear;
+  --family-1: "Assistant", sans-serif;
+  --family-2: "DM Sans", sans-serif;
+  --family-3: "Inter", sans-serif;
+  --family-4: "Poppins", sans-serif;
+}
+ul,
+li,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+.hero {
+  background: linear-gradient(
+      200.44deg,
+      rgba(0, 0, 0, 0.0001) 16.41%,
+      rgba(0, 0, 0, 0.51) 77.16%
+    ),
+    url("./images/hero-image.webp") center/cover no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 1rem 2rem;
+}
+.navbar,
+.links-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.navbar {
+  padding-bottom: 1rem;
+  border-bottom: 0.5px solid #fff;
+}
+.navlinks {
+  display: none;
+}
+.links-cont {
+  gap: 2.5rem;
+}
+.link {
+  padding-bottom: 2rem;
+  color: white;
+  transition: var(--transition);
+}
+.link:hover {
+  border-bottom: 2.32px solid #fff;
+}
+.logo {
+  width: 5rem;
+}
+.logo-img {
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .logo {
+    width: 8rem;
+  }
+  .navbar {
+    padding-bottom: 2rem;
+  }
+  .hero {
+    padding: 1rem 5rem;
+  }
+  .menu-btn {
+    display: none;
+  }
+  .navlinks {
+    display: block;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .links-cont {
+    gap: 4.62rem;
+  }
+  .hero {
+    padding: 1rem 7.5rem;
+  }
+}
