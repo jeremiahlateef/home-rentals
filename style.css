@@ -47,10 +47,12 @@ a {
   display: none;
 }
 .links-cont {
-  gap: 2.5rem;
+  gap: 1rem;
 }
+/* top, right, bottom, left */
 .link {
-  padding-bottom: 2rem;
+  padding: 0 1rem 2rem 1rem;
+
   color: white;
   transition: var(--transition);
 }
