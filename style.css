@@ -91,24 +91,56 @@ a {
   }
 }
 .hero-cont {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: block;
 }
 .hero-content {
   display: grid;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   min-width: 70vw;
   height: calc(80vh - 3rem);
 }
+
 #hero-map {
-  width: 35rem;
-  height: 25rem;
+  width: 85%;
+  margin: 0 auto;
+  height: 20rem;
   background: grey;
+  border-radius: 1rem;
 }
 .hero-info {
   text-transform: capitalize;
   color: #fff;
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  text-align: center;
+  font-family: var(--family-3);
+  font-size: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .hero-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #hero-map {
+    width: 25rem;
+    height: 20rem;
+    background: grey;
+    border-radius: 1rem;
+  }
+}
+.form-cont {
+  width: 85%;
+  margin: 0 auto;
+  border: 2px solid red;
+  padding: 1rem 1.5rem;
+  background: grey;
+}
+.input-img {
+  background: url("./images/arrow-down.svg") no-repeat;
+  padding: 0.5rem;
 }
