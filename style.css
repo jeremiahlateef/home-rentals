@@ -136,6 +136,9 @@ body {
     background: grey;
     border-radius: 1rem;
   }
+  .hero-info {
+    max-width: 30rem;
+  }
 }
 .form-cont {
   width: 85%;
