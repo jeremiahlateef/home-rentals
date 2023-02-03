@@ -22,6 +22,10 @@ a {
   list-style: none;
   text-decoration: none;
 }
+body {
+  min-width: 95vw;
+  overflow-x: hidden;
+}
 .hero {
   background: linear-gradient(
       200.44deg,
@@ -30,7 +34,7 @@ a {
     ),
     url("./images/hero-image.webp") center/cover no-repeat;
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 95vw;
   padding: 1rem 2rem;
 }
 .navbar,
@@ -143,4 +147,7 @@ a {
 .input-img {
   background: url("./images/arrow-down.svg") no-repeat;
   padding: 0.5rem;
+}
+main {
+  min-width: 95vw;
 }
