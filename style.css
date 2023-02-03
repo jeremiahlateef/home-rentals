@@ -151,3 +151,6 @@ body {
 main {
   min-width: 95vw;
 }
+.features-title {
+  font-size: 1.5rem;
+}
