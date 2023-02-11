@@ -188,6 +188,7 @@ Features Section
   font-family: var(--family-3);
   font-size: 1.5rem;
   line-height: 2rem;
+  text-transform: capitalize;
 }
 .title-two {
   color: var(--primary-clr-1);
@@ -335,3 +336,73 @@ Properties Section
 ==========================
 ==========================
 */
+.properties-section {
+  background: var(--bg-colour-1);
+}
+.title-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.property-btn {
+  width: 10rem;
+  height: 4rem;
+  text-align: center;
+  text-transform: capitalize;
+  background: var(--primary-clr-1);
+  color: var(--white);
+}
+.property-card {
+  width: 17rem;
+  border-radius: 24px;
+}
+.prop-cont {
+  width: 100%;
+  height: 12rem;
+}
+.prop-img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+.prop-content {
+  background-color: var(--white);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+.prop-div {
+  padding: 1rem;
+}
+.prop-title {
+  font-size: 1rem;
+}
+.prop-room {
+  color: var(--primary-clr-6);
+  text-transform: capitalize;
+}
+.prop-price {
+  color: var(--primary-clr-1);
+  font-size: 1rem;
+}
+.prop-icon-cont {
+  display: flex;
+  justify-content: space-evenly;
+  border-top: 2px solid #e4e4e4;
+}
+.prop-icons {
+  display: flex;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  justify-content: center;
+  width: 33.33%;
+}
+.prop-icon {
+  margin-right: 0.5rem;
+}
+.prop-icon-two {
+  border-right: 2px solid #e4e4e4;
+  /* border-right: 2px solid transparent; */
+}
