@@ -398,6 +398,7 @@ Properties Section
   padding-top: 0.5rem;
   justify-content: center;
   width: 33.33%;
+  align-items: center;
 }
 .prop-icon {
   margin-right: 0.5rem;
