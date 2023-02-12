@@ -354,7 +354,9 @@ Properties Section
   color: var(--white);
 }
 .property-card {
-  width: 17rem;
+  width: 100%;
+  margin-left: auto;
+  margin-left: auto;
   border-radius: 24px;
 }
 .prop-cont {
@@ -376,16 +378,32 @@ Properties Section
 .prop-div {
   padding: 1rem;
 }
+.property-cont {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 1rem;
+}
+.prop-title,
+.prop-room,
+.prop-price,
+.icon-num {
+  font-family: var(--family-2);
+  font-weight: 700;
+}
 .prop-title {
   font-size: 1rem;
+  margin-bottom: 1rem;
 }
 .prop-room {
   color: var(--primary-clr-6);
   text-transform: capitalize;
+  font-weight: 400;
+  font-size: 1rem;
+  font-size: 0.75rem;
 }
 .prop-price {
   color: var(--primary-clr-1);
-  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 .prop-icon-cont {
   display: flex;
@@ -405,5 +423,44 @@ Properties Section
 }
 .prop-icon-two {
   border-right: 2px solid #e4e4e4;
-  /* border-right: 2px solid transparent; */
+}
+@media screen and (min-width: 425px) {
+  .property-card {
+    width: 18rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .property-card {
+    width: 17rem;
+  }
+  .prop-cont {
+    width: 100%;
+  }
+  .prop-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .prop-room {
+    color: var(--primary-clr-6);
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 1rem;
+    font-size: 0.75rem;
+  }
+  .prop-price {
+    color: var(--primary-clr-1);
+    margin-bottom: 0.5rem;
+  }
+}
+@media screen and (max-width: 376px) {
+  .props-title {
+    font-size: 1.25rem;
+  }
+}
+@media screen and (max-width: 321px) {
+  .props-title {
+    font-size: 1.25rem;
+  }
 }
