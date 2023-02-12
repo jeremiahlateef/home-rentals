@@ -434,13 +434,13 @@ Properties Section
 }
 @media screen and (min-width: 768px) {
   .property-card {
-    width: 17rem;
+    width: 22rem;
   }
   .prop-cont {
     width: 100%;
   }
   .prop-title {
-    font-size: 1rem;
+    font-size: 1.4rem;
     margin-bottom: 1rem;
   }
   .prop-room {
@@ -448,11 +448,12 @@ Properties Section
     text-transform: capitalize;
     font-weight: 400;
     font-size: 1rem;
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
   .prop-price {
     color: var(--primary-clr-1);
     margin-bottom: 0.5rem;
+    font-size: 1.5rem;
   }
 }
 @media screen and (max-width: 376px) {
