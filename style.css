@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Assistant&family=DM+Sans&family=Inter:wght@400;500;600;800&family=Poppins:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant&family=DM+Sans:wght@400;700&family=Inter:wght@400;500;600;800&family=Montserrat:wght@700&family=Poppins:wght@600;700&display=swap");
 
 *,
 ::after,
@@ -25,6 +25,7 @@
   --family-2: "DM Sans", sans-serif;
   --family-3: "Inter", sans-serif;
   --family-4: "Poppins", sans-serif;
+  --family-5: "Montserrat", sans-serif;
   --primary-color-1: ;
 }
 ul,
@@ -346,12 +347,17 @@ Properties Section
   margin-bottom: 3rem;
 }
 .property-btn {
-  width: 10rem;
+  width: 8rem;
   height: 4rem;
   text-align: center;
   text-transform: capitalize;
   background: var(--primary-clr-1);
   color: var(--white);
+  box-shadow: 0px 20px 13px rgba(248, 90, 71, 0.035),
+    0px 8.14815px 6.51852px rgba(248, 90, 71, 0.0274815),
+    0px 1.85185px 3.14815px rgba(248, 90, 71, 0.0168519);
+  border-radius: 5px;
+  border: 1px solid var(--primary-clr-1);
 }
 .property-card {
   width: 100%;
@@ -427,14 +433,14 @@ Properties Section
 }
 @media screen and (min-width: 425px) {
   .property-card {
-    width: 18rem;
+    width: 16rem;
     margin-right: auto;
     margin-left: auto;
   }
 }
 @media screen and (min-width: 768px) {
   .property-card {
-    width: 22rem;
+    width: 19rem;
   }
   .prop-cont {
     width: 100%;
@@ -456,6 +462,11 @@ Properties Section
     font-size: 1.5rem;
   }
 }
+@media screen and (min-width: 1024px) {
+  .property-card {
+    width: 22rem;
+  }
+}
 @media screen and (max-width: 376px) {
   .props-title {
     font-size: 1.25rem;
@@ -464,5 +475,48 @@ Properties Section
 @media screen and (max-width: 321px) {
   .props-title {
     font-size: 1.25rem;
+  }
+}
+.prop-num {
+  margin-top: 4rem;
+  display: flex;
+  width: 80%;
+  border: 1px solid #bdbdbd;
+  margin-left: auto;
+  margin-right: auto;
+}
+.num-btn {
+  padding: 20px 10px;
+  width: 25%;
+  border: none;
+  border-right: 1px solid #bdbdbd;
+}
+.second,
+.third,
+.fourth {
+  width: 16.66%;
+}
+.num-btn {
+  background-color: #fff;
+  color: var(--primary-clr-1);
+  font-family: var(--family-5);
+}
+.first {
+  background: #f3f3f3;
+  color: #bdbdbd;
+}
+.third {
+  background-color: #f45113;
+}
+.fifth {
+  border-right: none;
+}
+.third {
+  color: #fff;
+}
+@media screen and (min-width: 425px) {
+  .prop-num {
+    margin-top: 5rem;
+    width: 18rem;
   }
 }
