@@ -462,6 +462,12 @@ Properties Section
     font-size: 1.5rem;
   }
 }
+@media screen and (min-width: 425px) {
+  .prop-num {
+    margin-top: 5rem;
+    width: 18rem;
+  }
+}
 @media screen and (min-width: 1024px) {
   .property-card {
     width: 22rem;
@@ -484,6 +490,7 @@ Properties Section
   border: 1px solid #bdbdbd;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 6px;
 }
 .num-btn {
   padding: 20px 10px;
@@ -520,6 +527,7 @@ Properties Section
     width: 18rem;
   }
 }
+
 /* 
 ==========================
 ==========================
@@ -529,4 +537,22 @@ Lifestyle Section
 */
 .lifestyle-section {
   background: var(--bg-colour-2);
+}
+.lifestyle-para {
+  font-family: var(--family-3);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--primary-clr-3);
+}
+.life-btn {
+  width: 8rem;
+  height: 3rem;
+  color: var(--white);
+  text-transform: capitalize;
+  border-radius: 12px;
+  text-align: center;
+  border: none;
+  background: var(--primary-clr-1);
+  font-family: var(--family-3);
+  font-weight: 600;
 }
