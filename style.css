@@ -520,3 +520,13 @@ Properties Section
     width: 18rem;
   }
 }
+/* 
+==========================
+==========================
+Lifestyle Section
+==========================
+==========================
+*/
+.lifestyle-section {
+  background: var(--bg-colour-2);
+}
