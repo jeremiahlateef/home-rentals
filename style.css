@@ -558,8 +558,6 @@ Lifestyle Section
   font-weight: 800;
 }
 .life-btn {
-  width: 8rem;
-  height: 3rem;
   color: var(--white);
   text-transform: capitalize;
   border-radius: 12px;
@@ -568,6 +566,8 @@ Lifestyle Section
   background: var(--primary-clr-1);
   font-family: var(--family-3);
   font-weight: 600;
+  font-size: 1rem;
+  padding: 1.15rem 1.75rem;
 }
 .lifestyle-images {
   position: relative;
@@ -646,6 +646,9 @@ Lifestyle Section
   }
   .image-2 {
     margin-top: 2.5rem;
+  }
+  .life-btn {
+    padding: 1.25rem 2rem;
   }
 }
 
