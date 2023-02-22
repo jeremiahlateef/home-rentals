@@ -705,3 +705,21 @@ Testimonial Section
 ==========================
 ==========================
 */
+.testimonial-section {
+  background: var(--bg-colour-3);
+}
+.test-content-center {
+  position: relative;
+  border: 2px solid red;
+  display: grid;
+}
+.quotes {
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  z-index: -10;
+  width: 3rem;
+}
+.test.text {
+  text-align: center;
+}
