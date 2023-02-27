@@ -170,6 +170,7 @@ main {
 .section-center {
   padding: 5rem 4rem;
 }
+
 /* 
 ==========================
 ==========================
@@ -264,7 +265,7 @@ Features Section
 
 @media screen and (max-width: 376px) {
   .section-center {
-    padding: 5rem 3rem;
+    padding: 4rem 3rem;
   }
   .features-title {
     font-size: 1.25rem;
@@ -279,7 +280,7 @@ Features Section
     width: 5rem;
   }
   .section-center {
-    padding: 5rem 2.5rem;
+    padding: 4rem 2.5rem;
   }
   .features-title {
     font-size: 1.15rem;
@@ -470,7 +471,7 @@ Properties Section
 }
 @media screen and (min-width: 1024px) {
   .property-card {
-    width: 22rem;
+    width: 20rem;
   }
 }
 @media screen and (max-width: 376px) {
@@ -710,7 +711,6 @@ Testimonial Section
 }
 .test-content-center {
   position: relative;
-  border: 2px solid red;
   display: grid;
 }
 .quotes {
@@ -720,6 +720,76 @@ Testimonial Section
   z-index: -10;
   width: 3rem;
 }
-.test.text {
-  text-align: center;
+.test-text {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.person-name {
+  color: var(--primary-clr-1);
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--family-3);
+}
+.test-text,
+.person-job {
+  color: var(--primary-clr-3);
+  font-family: var(--family-3);
+}
+.person-job {
+  font-size: 0.875rem;
+}
+
+.test-vid-content {
+  width: 80%;
+  height: 20rem;
+}
+.test-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.test-video-center {
+  margin-bottom: 4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .testimonial-center {
+    padding: 0;
+    display: flex;
+    column-gap: 2rem;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+  .test-content-center {
+    max-width: 50%;
+    padding-left: 3rem;
+  }
+  .quotes {
+    position: absolute;
+    top: -1.5rem;
+    left: 2rem;
+    z-index: -10;
+    width: 3rem;
+  }
+  .test-text {
+    margin-bottom: 1.5rem;
+  }
+  .test-person-cont {
+    display: flex;
+    align-items: center;
+    column-gap: 1.25rem;
+  }
+  .test-text {
+    font-size: 1.25rem;
+  }
+  .person-name {
+    font-size: 1.15rem;
+  }
+  .person-job {
+    font-size: 1rem;
+  }
+  .test-vid-content {
+    max-width: 50%;
+    height: 30rem;
+  }
 }
