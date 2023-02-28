@@ -28,7 +28,5 @@ if (navigator.geolocation)
         .bindPopup(L.popup(autoClose, false))
         .openPopup();
     },
-    function () {
-      alert("Could not get your location");
-    }
+    function () {}
   );
