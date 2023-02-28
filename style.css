@@ -265,7 +265,7 @@ Features Section
 
 @media screen and (max-width: 376px) {
   .section-center {
-    padding: 4rem 3rem;
+    padding: 4rem 2rem;
   }
   .features-title {
     font-size: 1.25rem;
@@ -280,7 +280,7 @@ Features Section
     width: 5rem;
   }
   .section-center {
-    padding: 4rem 2.5rem;
+    padding: 4rem 1.5rem;
   }
   .features-title {
     font-size: 1.15rem;
@@ -441,7 +441,7 @@ Properties Section
 }
 @media screen and (min-width: 768px) {
   .property-card {
-    width: 19rem;
+    width: 18rem;
   }
   .prop-cont {
     width: 100%;
@@ -792,4 +792,125 @@ Testimonial Section
     max-width: 50%;
     height: 30rem;
   }
+  .test-video-center {
+    margin-bottom: 0;
+  }
+}
+/* 
+==========================
+==========================
+Testimonial Section
+==========================
+==========================
+*/
+.footer-border {
+  border-top: 2px solid var(--primary-clr-1);
+  padding-top: 3rem;
+  /* padding-bottom: 3rem; */
+}
+.footer-logo {
+  letter-spacing: -1px;
+  color: #000;
+  font-weight: 700;
+  font-family: var(--family-3);
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.foot-location,
+.foot-tel,
+.foot-fax {
+  display: flex;
+  column-gap: 1.25rem;
+  align-items: center;
+  /* justify-content: center; */
+}
+.foot-tel-fax,
+.foot-location {
+  margin-bottom: 1.15rem;
+}
+.foot-tel-fax {
+  display: grid;
+  row-gap: 1.15rem;
+}
+.foot-location {
+  margin-right: auto;
+  margin-left: auto;
+}
+.foot-icon-text {
+  color: var(--primary-clr-2);
+  font-size: 14px;
+  font-family: var(--family-1);
+}
+.social-text {
+  color: var(--family-2);
+  opacity: 0.5;
+  font-size: 14px;
+}
+.soc-media {
+  margin-bottom: 1.15rem;
+}
+
+.foot-social-icons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.foot-social {
+  display: block;
+  text-align: center;
+  margin-bottom: 1.15rem;
+}
+@media screen and (min-width: 425px) {
+  .foot-tel-fax {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .foot-center {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .foot-social {
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .soc-media {
+    margin-bottom: 0;
+  }
+  .foot-tel-fax {
+    justify-content: space-between;
+  }
+}
+.copy-foot {
+  border-top: 1px solid rgba(123, 185, 252, 0.2);
+  padding-top: 1rem;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.foot-link-list {
+  text-transform: uppercase;
+  color: var(--primary-clr-2);
+}
+.copyright {
+  text-align: center;
+  margin-top: 1.15rem;
+  font-family: var(--family-3);
+}
+.creator {
+  font-family: var(--family-2);
+  color: var(--primary-clr-1);
+  text-align: center;
+  margin-top: 1.15rem;
 }
