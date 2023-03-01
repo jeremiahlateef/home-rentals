@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- css -->
     <link rel="stylesheet" href="./style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
@@ -17,6 +24,19 @@
       src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
       crossorigin=""
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
+      integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
+      integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
     <script defer src="app.js"></script>
     <title>Home Rentals</title>
@@ -512,6 +532,180 @@ Lifestyle Section
           </h2>
           <div class="form-center">
             <h3 class="form-title-2">Add a new property</h3>
+
+            <form>
+              <div class="forms-sec-center">
+                <div class="form-div">
+                  <label for="name" class="prop-label"
+                    >Name<span class="star"> *</span></label
+                  >
+                  <input type="text" id="name" name="name" class="input-form" />
+                </div>
+                <div class="form-div">
+                  <label for="address" class="prop-label"
+                    >Address<span class="star"> *</span></label
+                  >
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    class="input-form"
+                  />
+                </div>
+                <div class="form-div">
+                  <label for="unit" class="prop-label"
+                    >Unit Number<span class="star"> *</span></label
+                  >
+                  <input
+                    type="number"
+                    id="unit"
+                    name="unit"
+                    class="input-form"
+                  />
+                </div>
+
+                <!-- Dropdown button -->
+                <div class="dropdown form-div">
+                  <label for="city" class="prop-label"
+                    >City<span class="star"> *</span></label
+                  >
+                  <button
+                    class="btn btn-default dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    id="city"
+                  >
+                    <span class="text-btn">Select City</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                  </ul>
+                </div>
+                <!--End of Dropdown button -->
+                <!-- Dropdown button -->
+                <div class="dropdown form-div">
+                  <label for="city" class="prop-label"
+                    >City<span class="star"> *</span></label
+                  >
+                  <button
+                    class="btn btn-default dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    id="city"
+                  >
+                    <span class="text-btn">Select City</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                  </ul>
+                </div>
+                <!--End of Dropdown button -->
+                <!-- Dropdown button -->
+                <div class="dropdown form-div">
+                  <label for="city" class="prop-label"
+                    >City<span class="star"> *</span></label
+                  >
+                  <button
+                    class="btn btn-default dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    id="city"
+                  >
+                    <span class="text-btn">Select City</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                  </ul>
+                </div>
+                <!--End of Dropdown button -->
+                <!-- Dropdown button -->
+                <div class="dropdown form-div">
+                  <label for="city" class="prop-label"
+                    >City<span class="star"> *</span></label
+                  >
+                  <button
+                    class="btn btn-default dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    id="city"
+                  >
+                    <span class="text-btn">Select City</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                  </ul>
+                </div>
+                <!--End of Dropdown button -->
+                <!-- Dropdown button -->
+                <div class="dropdown form-div">
+                  <label for="city" class="prop-label"
+                    >City<span class="star"> *</span></label
+                  >
+                  <button
+                    class="btn btn-default dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    id="city"
+                  >
+                    <span class="text-btn">Select City</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                    <li class="dropdown-header">Ikeja</li>
+                  </ul>
+                </div>
+                <!--End of Dropdown button -->
+              </div>
+              <div class="form-div desc-cont">
+                <label for="description" class="prop-label"
+                  >Description<span class="star">*</span></label
+                >
+                <textarea
+                  id="description"
+                  name="description"
+                  class="desc"
+                ></textarea>
+              </div>
+              <!-- <label for="city">City<span class="star">*</span></label>
+              <select
+                placeholder="city"
+                id="city"
+                class="btn btn-default select-city dropdown-toggle"
+              >
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </select> -->
+
+              <!-- <label for="select-tools">City<span class="star">*</span></label>
+              <select
+                id="select-tools"
+                multiple
+                placeholder="City"
+                type="button"
+                data-toggle="dropdown"
+              ></select> -->
+              <!-- <button id="button-clear">clear</button> -->
+            </form>
           </div>
         </div>
       </section>
