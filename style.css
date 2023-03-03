@@ -34,6 +34,52 @@ a {
   list-style: none;
   text-decoration: none;
 }
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+/* p {
+} */
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1;
+  }
+}
 body {
   min-width: 95vw;
   overflow-x: hidden;
@@ -62,7 +108,8 @@ body {
 .links-cont {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  border: 2px solid red;
 }
 .navbar {
   padding-bottom: 1rem;
@@ -73,6 +120,9 @@ body {
 }
 .links-cont {
   gap: 1rem;
+}
+nav {
+  border: 2px solid red;
 }
 /* top, right, bottom, left */
 .link {
@@ -209,8 +259,7 @@ Features Section
   margin-bottom: 2rem;
 }
 .features-icon {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 1rem;
   justify-content: space-between;
   margin-bottom: 2.5rem;
@@ -237,7 +286,11 @@ Features Section
   font-weight: 600;
   font-size: 1rem;
   text-transform: capitalize;
-  width: 7rem;
+  width: auto;
+  /* border: 2px ssolid purple; */
+}
+.icons-center {
+  /* border: 2px solid green; */
 }
 @media screen and (min-width: 768px) {
   .title {
@@ -266,18 +319,32 @@ Features Section
     color: var(--primary-clr-3);
     font-family: var(--family-3);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-transform: capitalize;
     width: 10rem;
+  }
+  .features-icon {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 320px) {
+  .features-icon {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    justify-content: space-between;
   }
 }
 
 @media screen and (max-width: 376px) {
   .section-center {
-    padding: 4rem 2rem;
+    padding: 4rem 3rem;
   }
   .features-title {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
   }
 }
 @media screen and (max-width: 321px) {
@@ -285,14 +352,14 @@ Features Section
     gap: 1rem;
   }
   .icon-text {
-    font-size: 0.75rem;
-    width: 5rem;
+    font-size: 1.15rem;
+    width: auto;
   }
   .section-center {
-    padding: 4rem 1.5rem;
+    padding: 4rem 2.5rem;
   }
   .features-title {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
   }
 }
 .features-images {
@@ -320,6 +387,12 @@ Features Section
   }
   .features-images {
     height: 24rem;
+  }
+  .features-icon {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    justify-content: space-between;
   }
 }
 
