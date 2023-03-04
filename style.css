@@ -523,6 +523,48 @@ Properties Section
 .prop-icon-two {
   border-right: 2px solid #e4e4e4;
 }
+.prop-num {
+  margin-top: 4rem;
+  display: flex;
+  width: 80%;
+  border: 1px solid #bdbdbd;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6px;
+}
+.num-btn {
+  padding: 20px 10px;
+  width: 25%;
+  border: none;
+  border-right: 1px solid #bdbdbd;
+}
+.second,
+.third,
+.fourth {
+  width: 16.66%;
+}
+.num-btn {
+  background-color: #fff;
+  color: var(--primary-clr-1);
+  font-family: var(--family-5);
+}
+.first {
+  background: #f3f3f3;
+  color: #bdbdbd;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.third {
+  background-color: #f45113;
+}
+.fifth {
+  border-right: none;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.third {
+  color: #fff;
+}
 @media screen and (min-width: 320px) {
   .property-btn {
     width: 10rem;
@@ -569,6 +611,9 @@ Properties Section
     font-size: 1.4rem;
     margin-bottom: 1rem;
   }
+  .props-title {
+    font-size: 2rem;
+  }
   .prop-room {
     color: var(--primary-clr-6);
     text-transform: capitalize;
@@ -585,56 +630,13 @@ Properties Section
 @media screen and (min-width: 425px) {
   .prop-num {
     margin-top: 5rem;
-    width: 18rem;
+    width: 25rem;
   }
 }
 @media screen and (min-width: 1024px) {
   .property-card {
     width: 30rem;
   }
-}
-
-.prop-num {
-  margin-top: 4rem;
-  display: flex;
-  width: 80%;
-  border: 1px solid #bdbdbd;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 6px;
-}
-.num-btn {
-  padding: 20px 10px;
-  width: 25%;
-  border: none;
-  border-right: 1px solid #bdbdbd;
-}
-.second,
-.third,
-.fourth {
-  width: 16.66%;
-}
-.num-btn {
-  background-color: #fff;
-  color: var(--primary-clr-1);
-  font-family: var(--family-5);
-}
-.first {
-  background: #f3f3f3;
-  color: #bdbdbd;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-}
-.third {
-  background-color: #f45113;
-}
-.fifth {
-  border-right: none;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
-.third {
-  color: #fff;
 }
 
 /* 
