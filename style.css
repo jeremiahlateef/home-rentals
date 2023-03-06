@@ -810,6 +810,8 @@ Form Section
   color: var(--primary-clr-3);
   font-family: var(--family-2);
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 .form-center {
   background: #fff;
@@ -819,6 +821,7 @@ Form Section
 .form-title-2 {
   text-align: center;
   color: var(--primary-clr-1);
+  font-size: 2rem;
 }
 .star {
   color: var(--primary-clr-1);
@@ -921,7 +924,7 @@ Testimonial Section
 }
 .test-text {
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 .person-name {
   color: var(--primary-clr-1);
@@ -972,6 +975,7 @@ Testimonial Section
   }
   .test-text {
     margin-bottom: 1.5rem;
+    font-size: 1.35rem;
   }
   .test-person-cont {
     display: flex;
