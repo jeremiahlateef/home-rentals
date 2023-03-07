@@ -115,6 +115,10 @@ body {
   padding-bottom: 1rem;
   border-bottom: 0.5px solid #fff;
 }
+.navbar.sticky {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.95);
+}
 .navlinks {
   display: none;
 }
@@ -313,6 +317,7 @@ Features Section
   .features-title {
     text-transform: capitalize;
     margin-bottom: 2.5rem;
+    font-size: 2rem;
   }
   .icon-cont {
     padding: 1.25rem;
@@ -354,14 +359,14 @@ Features Section
     gap: 1rem;
   }
   .icon-text {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     width: auto;
   }
   .section-center {
     padding: 4rem 2.5rem;
   }
   .features-title {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
   }
   .features-images {
     width: 70%;
@@ -372,7 +377,7 @@ Features Section
     padding: 4rem 3rem;
   }
   .features-title {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
   }
   .features-images {
     width: 70%;
@@ -1116,4 +1121,29 @@ Testimonial Section
   color: var(--primary-clr-1);
   text-align: center;
   margin-top: 1.15rem;
+}
+
+/*
+==================
+==================
+Intersection Observer 
+==================
+==================
+*/
+.section--hidden {
+  opacity: 0;
+  transform: translateY(5rem);
+  display: block;
+  transition: all 1s;
+}
+.show {
+  opacity: 1;
+  transform: translateY(0rem);
+}
+
+@media (prefers-reduced-motion) {
+  .section--hidden {
+    transition: none;
+    transform: translateY(0px);
+  }
 }
