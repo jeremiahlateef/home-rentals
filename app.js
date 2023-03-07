@@ -123,6 +123,7 @@ if (navigator.geolocation)
 
 //Adding the Intersection observer API
 const hidden = document.querySelectorAll(".section--hidden");
+const imageAnim = document.querySelectorAll(".life-anim");
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
