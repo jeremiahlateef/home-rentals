@@ -930,6 +930,7 @@ Testimonial Section
   position: relative;
   display: grid;
   height: 35rem;
+  overflow: hidden;
 }
 .quotes {
   position: absolute;
@@ -937,14 +938,14 @@ Testimonial Section
   left: -2rem;
   z-index: -10;
   width: 3rem;
+  border: 0;
 }
 .test-content {
   position: absolute;
   top: 0;
-  margin-left: auto;
-  margin-right: auto;
   height: 100%;
   width: 100%;
+  transition: transform 1s;
 }
 .test-text {
   margin-bottom: 1rem;
@@ -977,7 +978,30 @@ Testimonial Section
 .test-video-center {
   margin-bottom: 4rem;
 }
-
+.test-dots {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+.test-dots_dot {
+  border: none;
+  background-color: #b9b9b9;
+  opacity: 0.7;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  margin-right: 1.75rem;
+  cursor: pointer;
+  transition: all 0.5s;
+  border: none;
+}
+.test-dot-active {
+  background-color: #888;
+  opacity: 1;
+  border: none;
+}
 @media screen and (max-width: 320px) {
   .test-content-center {
     height: 32rem;
@@ -1012,9 +1036,11 @@ Testimonial Section
   .test-content-center {
     width: 50%;
     padding-left: 3rem;
-    height: 35rem;
+    height: 38rem;
   }
-
+  .test-content {
+    padding-left: 2rem;
+  }
   .quotes {
     position: absolute;
     top: -1.5rem;
@@ -1046,6 +1072,9 @@ Testimonial Section
   }
   .test-video-center {
     margin-bottom: 0;
+  }
+  .test-dots {
+    left: 20%;
   }
 }
 @media screen and (min-width: 1024px) {
