@@ -929,6 +929,7 @@ Testimonial Section
 .test-content-center {
   position: relative;
   display: grid;
+  height: 35rem;
 }
 .quotes {
   position: absolute;
@@ -936,6 +937,14 @@ Testimonial Section
   left: -2rem;
   z-index: -10;
   width: 3rem;
+}
+.test-content {
+  position: absolute;
+  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  width: 100%;
 }
 .test-text {
   margin-bottom: 1rem;
@@ -969,6 +978,29 @@ Testimonial Section
   margin-bottom: 4rem;
 }
 
+@media screen and (max-width: 320px) {
+  .test-content-center {
+    height: 32rem;
+  }
+  .test-content {
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .test-content-center {
+    height: 28rem;
+  }
+}
+@media screen and (min-width: 425px) {
+  .test-content-center {
+    height: 26rem;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .testimonial-center {
     padding: 0;
@@ -978,9 +1010,11 @@ Testimonial Section
     flex-direction: row-reverse;
   }
   .test-content-center {
-    max-width: 50%;
+    width: 50%;
     padding-left: 3rem;
+    height: 35rem;
   }
+
   .quotes {
     position: absolute;
     top: -1.5rem;
@@ -1012,6 +1046,16 @@ Testimonial Section
   }
   .test-video-center {
     margin-bottom: 0;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .test-content-center {
+    height: 25rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .test-content-center {
+    height: 18rem;
   }
 }
 /* 
