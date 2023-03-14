@@ -155,3 +155,84 @@ const navObserver = new IntersectionObserver(stickyNav, {
 });
 // navObserver.observe(navbar);
 // console.log(navHeight);
+
+// Slider functionality
+const slider = function () {
+  const slides = document.querySelectorAll(".test-content");
+  const dotContainer = document.querySelector(".test-dots");
+
+  let curSlide = 0;
+  const maxSlide = slides.length;
+
+  // Add dots to the dot container
+  const addDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        "beforeend",
+        `<button class="test-dots_dot" data-slide="${i}"></button>`
+      );
+    });
+  };
+
+  const startDot = function (slide) {
+    // first remove all the active class from all the dots
+    document
+      .querySelectorAll(".test-dots_dot")
+      .forEach((dot) => dot.classList.remove("test-dot-active"));
+
+    // Add it to the current slide that is on display
+    document
+      .querySelector(`.test-dots_dot[data-slide="${slide}"]`)
+      .classList.add("test-dot-active");
+  };
+
+  // Go to the current slide that is clicked
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  };
+
+  // Next Slide
+  const nextSlide = function () {
+    if (curSlide === maxSlide - 1) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+    goToSlide(curSlide);
+    startDot(curSlide);
+  };
+  const prevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
+    goToSlide(curSlide);
+    startDot(curSlide);
+  };
+
+  // initial position
+  const initalPosition = function () {
+    goToSlide(0);
+    addDots();
+    startDot(0);
+  };
+  initalPosition();
+  // Add Event Handlers to Arrow Keys
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") prevSlide();
+    e.key === "ArrowRight" && nextSlide();
+  });
+  // Add Event Handlers to the buttons
+  dotContainer.addEventListener("click", function (e) {
+    if (e.target.classList.contains("test-dots_dot")) {
+      const { slide } = e.target.dataset;
+      goToSlide(slide);
+      startDot(slide);
+    }
+  });
+};
+
+slider();
