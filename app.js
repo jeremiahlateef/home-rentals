@@ -1,238 +1,364 @@
-`use strict`;
-if (navigator.geolocation)
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      const { latitude } = position.coords;
-      const { longitude } = position.coords;
-      // console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
+"use strict";
 
-      const coords = [latitude, longitude];
-      const map = L.map("hero-map").setView(coords, 13);
+/* Home Rentals: behaviour for the accessibility rebuild.
+   Everything here is an enhancement. The page content is readable without it. */
 
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
+(function () {
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) =>
+    Array.from(root.querySelectorAll(selector));
 
-      map.on("click", function (mapEvent) {
-        const { lat, lng } = mapEvent.latlng;
-        L.marker([lat, lng]).addTo(map).bindPopup("Apartment").openPopup();
+  /* ------------------------------------------------------------------
+     1. Mobile menu: a real button that reports expanded / collapsed (4.1.2)
+     ------------------------------------------------------------------ */
+  const menuBtn = $("#menu-btn");
+  const navLinks = $("#nav-links");
 
-        L.marker([lat, lng])
-          .addTo(map)
-          .bindPopup(L.popup(closeOnClick, false))
-          .openPopup();
-        L.marker([lat, lng])
-          .addTo(map)
-          .bindPopup(L.popup(autoClose, false))
-          .openPopup();
-      });
-    },
-    function () {}
-  );
+  function setMenu(open) {
+    navLinks.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+  }
 
-// Seletivize.js API
-// var $select = $("#select-tools").selectize({
-//   maxItems: null,
-//   valueField: "id",
-//   labelField: "title",
-//   searchField: "title",
-//   options: [
-//     {
-//       id: 1,
-//       title: "Ikeja",
-//       url: "http://en.wikipedia.org/wiki/Spectrometers",
-//     },
-//     {
-//       id: 2,
-//       title: "Lekki",
-//       url: "http://en.wikipedia.org/wiki/Star_chart",
-//     },
-//     {
-//       id: 3,
-//       title: "Festac",
-//       url: "http://en.wikipedia.org/wiki/Electrical_tape",
-//     },
-//     {
-//       id: 4,
-//       title: "Yaba",
-//       url: "http://en.wikipedia.org/wiki/Electrical_tape",
-//     },
-//   ],
-//   create: false,
-// });
-
-// // API controls
-
-// var control = $select[0].selectize;
-
-// $("#button-clear").on("click", function () {
-//   control.clear();
-// });
-
-// $("#button-clearoptions").on("click", function () {
-//   control.clearOptions();
-// });
-
-// $("#button-addoption").on("click", function () {
-//   control.addOption({
-//     id: 5,
-//     title: "Something New",
-//     url: "http://google.com",
-//   });
-// });
-
-// $("#button-additem").on("click", function () {
-//   control.addItem(2);
-// });
-
-// $("#button-maxitems2").on("click", function () {
-//   control.setMaxItems(1);
-// });
-
-// $("#button-maxitems100").on("click", function () {
-//   control.setMaxItems(100);
-// });
-
-// $("#button-setvalue").on("click", function () {
-//   control.setValue([2, 3]);
-// });
-// dropdown
-
-// // Reveal sections
-// const allSections = document.querySelectorAll(".section");
-
-// const revealSection = function (entries, observer) {
-//   const [entry] = entries;
-
-//   if (!entry.isIntersecting) return;
-
-//   entry.target.classList.remove("section--hidden");
-//   observer.unobserve(entry.target);
-// };
-
-// const sectionObserver = new IntersectionObserver(revealSection, {
-//   root: null,
-//   threshold: 0.15,
-// });
-
-// allSections.forEach(function (section) {
-//   sectionObserver.observe(section);
-//   section.classList.add("section--hidden");
-// });
-
-//Adding the Intersection observer API
-const hidden = document.querySelectorAll(".section--hidden");
-const imageAnim = document.querySelectorAll(".life-anim");
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    } else {
-      entry.target.classList.remove("show");
+  menuBtn.addEventListener("click", () => {
+    setMenu(menuBtn.getAttribute("aria-expanded") !== "true");
+  });
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      menuBtn.getAttribute("aria-expanded") === "true"
+    ) {
+      setMenu(false);
+      menuBtn.focus();
     }
   });
-});
+  navLinks.addEventListener("click", (event) => {
+    if (event.target.closest("a")) setMenu(false);
+  });
 
-hidden.forEach((el) => observer.observe(el));
-
-// Sticky Navigation
-const navbar = document.querySelector(".navbar");
-const navHeight = navbar.getBoundingClientRect().height;
-
-const stickyNav = function (entries) {
-  const [entry] = entries;
-
-  if (!entry.isIntersecting) navbar.classList.add("sticky");
-  else navbar.classList.remove("sticky");
-};
-
-const navObserver = new IntersectionObserver(stickyNav, {
-  root: null,
-  threshold: 0,
-  rootMargin: `${navHeight}px`,
-});
-// navObserver.observe(navbar);
-// console.log(navHeight);
-
-// Slider functionality
-const slider = function () {
-  const slides = document.querySelectorAll(".test-content");
-  const dotContainer = document.querySelector(".test-dots");
-
-  let curSlide = 0;
-  const maxSlide = slides.length;
-
-  // Add dots to the dot container
-  const addDots = function () {
-    slides.forEach(function (_, i) {
-      dotContainer.insertAdjacentHTML(
-        "beforeend",
-        `<button class="test-dots_dot" data-slide="${i}"></button>`
-      );
-    });
-  };
-
-  const startDot = function (slide) {
-    // first remove all the active class from all the dots
-    document
-      .querySelectorAll(".test-dots_dot")
-      .forEach((dot) => dot.classList.remove("test-dot-active"));
-
-    // Add it to the current slide that is on display
-    document
-      .querySelector(`.test-dots_dot[data-slide="${slide}"]`)
-      .classList.add("test-dot-active");
-  };
-
-  // Go to the current slide that is clicked
-  const goToSlide = function (slide) {
-    slides.forEach(
-      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  /* ------------------------------------------------------------------
+     2. Scroll reveal. Only runs when the visitor has not asked for reduced
+        motion, and content never hides again once shown (2.3.3).
+     ------------------------------------------------------------------ */
+  const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)")
+    .matches;
+  if (motionOk && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.1 },
     );
-  };
+    $$(".section-center").forEach((el) => {
+      el.classList.add("section--hidden");
+      observer.observe(el);
+    });
+  }
 
-  // Next Slide
-  const nextSlide = function () {
-    if (curSlide === maxSlide - 1) {
-      curSlide = 0;
-    } else {
-      curSlide++;
-    }
-    goToSlide(curSlide);
-    startDot(curSlide);
-  };
-  const prevSlide = function () {
-    if (curSlide === 0) {
-      curSlide = maxSlide - 1;
-    } else {
-      curSlide--;
-    }
-    goToSlide(curSlide);
-    startDot(curSlide);
-  };
+  /* ------------------------------------------------------------------
+     3. Map. Created at the Bay Area view with no location prompt on load.
+        Every listing is also in the list below the map, so the map is never
+        the only way to find a property.
+     ------------------------------------------------------------------ */
+  const mapEl = $("#hero-map");
+  const mapStatus = $("#map-status");
+  const cards = $$(".property-card");
+  const markers = new Map();
+  let map = null;
 
-  // initial position
-  const initalPosition = function () {
-    goToSlide(0);
-    addDots();
-    startDot(0);
-  };
-  initalPosition();
-  // Add Event Handlers to Arrow Keys
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowLeft") prevSlide();
-    e.key === "ArrowRight" && nextSlide();
+  function popupFor(card) {
+    const box = document.createElement("div");
+    const title = document.createElement("strong");
+    title.textContent = $(".prop-title", card).textContent;
+    const price = document.createElement("div");
+    price.textContent = $(".prop-price", card).textContent;
+    const link = document.createElement("a");
+    link.href = "#" + card.id;
+    link.textContent = "View listing";
+    box.append(title, price, link);
+    return box;
+  }
+
+  function initMap() {
+    if (typeof L === "undefined") {
+      mapEl.textContent =
+        "The map could not be loaded. Browse the property list below instead.";
+      mapEl.removeAttribute("role");
+      return;
+    }
+    map = L.map(mapEl, { scrollWheelZoom: false }).setView(
+      [37.7749, -122.4194],
+      10,
+    );
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    cards.forEach((card) => {
+      const address = $(".prop-title", card).textContent;
+      // Pins are a visual shortcut for mouse users. Keyboard and screen reader
+      // users get every listing, with the same details, from the list below
+      // (WCAG 2.1.1 equivalent functionality). Overlapping pins would also be
+      // too close together to tap reliably (2.5.8), so they are left out of
+      // the tab order and hidden from assistive technology.
+      const marker = L.marker(
+        [Number(card.dataset.lat), Number(card.dataset.lng)],
+        {
+          title: address,
+          alt: "",
+          keyboard: false,
+        },
+      ).bindPopup(popupFor(card));
+      markers.set(card.id, marker);
+    });
+  }
+
+  $("#locate").addEventListener("click", () => {
+    if (!map || !navigator.geolocation) {
+      mapStatus.textContent = "Location is not available in this browser.";
+      return;
+    }
+    mapStatus.textContent = "Finding your location...";
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        map.setView([latitude, longitude], 13);
+        L.circleMarker([latitude, longitude], { radius: 8 })
+          .addTo(map)
+          .bindPopup("You are here");
+        mapStatus.textContent = "The map is now centered on your location.";
+      },
+      () => {
+        mapStatus.textContent =
+          "We could not get your location. The map still shows the San Francisco Bay Area.";
+      },
+    );
   });
-  // Add Event Handlers to the buttons
-  dotContainer.addEventListener("click", function (e) {
-    if (e.target.classList.contains("test-dots_dot")) {
-      const { slide } = e.target.dataset;
-      goToSlide(slide);
-      startDot(slide);
-    }
-  });
-};
 
-slider();
+  /* ------------------------------------------------------------------
+     4. Search and filter, announced through a status message (4.1.3)
+     ------------------------------------------------------------------ */
+  const typeSelect = $("#all-type");
+  const searchInput = $("#location");
+  const countEl = $("#result-count");
+
+  function applyFilters() {
+    const type = typeSelect.value;
+    const query = searchInput.value.trim().toLowerCase();
+    let shown = 0;
+    const visible = [];
+
+    cards.forEach((card) => {
+      const address = $(".prop-title", card).textContent.toLowerCase();
+      const cardType = card.dataset.type;
+      const match =
+        (!type || cardType === type) &&
+        (!query ||
+          address.includes(query) ||
+          cardType.toLowerCase().includes(query));
+      card.hidden = !match;
+      const marker = markers.get(card.id);
+      if (marker && map) {
+        if (match) marker.addTo(map);
+        else marker.remove();
+      }
+      if (match) {
+        shown += 1;
+        visible.push(marker);
+      }
+    });
+
+    if (map && visible.length) {
+      map.fitBounds(L.featureGroup(visible).getBounds().pad(0.25), {
+        maxZoom: 13,
+      });
+    }
+
+    countEl.textContent =
+      shown === 0
+        ? "No properties match your search. Try a different area or property type."
+        : `Showing ${shown} of ${cards.length} properties.`;
+  }
+
+  $("#search-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    applyFilters();
+  });
+  typeSelect.addEventListener("change", applyFilters);
+  searchInput.addEventListener("search", applyFilters);
+  $("#show-all").addEventListener("click", () => {
+    typeSelect.value = "";
+    searchInput.value = "";
+    applyFilters();
+  });
+
+  initMap();
+  if (map) {
+    markers.forEach((marker) => marker.addTo(map));
+    map.fitBounds(
+      L.featureGroup(Array.from(markers.values())).getBounds().pad(0.25),
+    );
+  }
+
+  /* ------------------------------------------------------------------
+     5. Add-property form: visible labels, inline errors, error summary
+        that receives focus (3.3.1, 3.3.3, 3.3.2)
+     ------------------------------------------------------------------ */
+  const form = $("#add-form");
+  const summary = $("#form-errors");
+  const summaryList = $("#form-errors-list");
+  const success = $("#form-success");
+
+  const rules = [
+    {
+      id: "name",
+      message: "Enter your name.",
+      valid: (v) => v.trim().length > 0,
+    },
+    {
+      id: "address",
+      message: "Enter the property address.",
+      valid: (v) => v.trim().length > 0,
+    },
+    {
+      id: "unit",
+      message: "Enter the unit number.",
+      valid: (v) => v.trim().length > 0,
+    },
+    {
+      id: "city",
+      message: "Choose a city from the list.",
+      valid: (v) => v !== "",
+    },
+    {
+      id: "description",
+      message: "Describe the property in at least 20 characters.",
+      valid: (v) => v.trim().length >= 20,
+    },
+  ];
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    success.textContent = "";
+    const problems = [];
+
+    rules.forEach(({ id, message, valid }) => {
+      const field = document.getElementById(id);
+      const error = document.getElementById(id + "-error");
+      const base =
+        field.dataset.describedby ||
+        (field.dataset.describedby =
+          field.getAttribute("aria-describedby") || "");
+
+      if (valid(field.value)) {
+        field.removeAttribute("aria-invalid");
+        error.hidden = true;
+        error.textContent = "";
+        if (base) field.setAttribute("aria-describedby", base);
+        else field.removeAttribute("aria-describedby");
+      } else {
+        problems.push({ id, message });
+        field.setAttribute("aria-invalid", "true");
+        error.textContent = "Error: " + message;
+        error.hidden = false;
+        field.setAttribute(
+          "aria-describedby",
+          (base + " " + id + "-error").trim(),
+        );
+      }
+    });
+
+    if (problems.length) {
+      summaryList.innerHTML = "";
+      problems.forEach(({ id, message }) => {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = "#" + id;
+        link.textContent = message;
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.getElementById(id).focus();
+        });
+        item.appendChild(link);
+        summaryList.appendChild(item);
+      });
+      summary.hidden = false;
+      summary.focus();
+      return;
+    }
+
+    summary.hidden = true;
+    form.reset();
+    success.textContent =
+      "Thank you. Your property was received. This is a demo form, so nothing was sent.";
+  });
+
+  /* ------------------------------------------------------------------
+     6. Testimonial carousel. Previous and next buttons, named dot buttons,
+        off-screen slides hidden from assistive technology, no auto-rotation,
+        and no global arrow-key listener (2.1.1, 2.2.2, 4.1.2)
+     ------------------------------------------------------------------ */
+  const slides = $$(".test-content");
+  const controls = $("#test-controls");
+
+  if (slides.length > 1) {
+    const total = slides.length;
+    let current = 0;
+
+    const status = document.createElement("p");
+    status.className = "sr-only";
+    status.setAttribute("role", "status");
+
+    const makeButton = (className, label, inner) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = className;
+      button.setAttribute("aria-label", label);
+      if (inner) {
+        button.innerHTML = inner;
+      }
+      return button;
+    };
+
+    const prev = makeButton(
+      "test-nav-btn",
+      "Previous testimonial",
+      '<span aria-hidden="true">&#8249;</span>',
+    );
+    const next = makeButton(
+      "test-nav-btn",
+      "Next testimonial",
+      '<span aria-hidden="true">&#8250;</span>',
+    );
+    const dots = slides.map((_, i) =>
+      makeButton("test-dots_dot", `Show testimonial ${i + 1} of ${total}`),
+    );
+
+    controls.append(prev, ...dots, next, status);
+
+    function show(index, announce) {
+      current = (index + total) % total;
+      slides.forEach((slide, i) => {
+        slide.style.transform = `translateX(${100 * (i - current)}%)`;
+        slide.setAttribute("aria-hidden", String(i !== current));
+      });
+      dots.forEach((dot, i) =>
+        dot.setAttribute("aria-current", String(i === current)),
+      );
+      if (announce)
+        status.textContent = `Showing testimonial ${current + 1} of ${total}.`;
+    }
+
+    prev.addEventListener("click", () => show(current - 1, true));
+    next.addEventListener("click", () => show(current + 1, true));
+    dots.forEach((dot, i) =>
+      dot.addEventListener("click", () => show(i, true)),
+    );
+    show(0, false);
+  }
+})();
