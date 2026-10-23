@@ -1,18 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- css -->
+    <meta
+      name="description"
+      content="Find affordable rooms and apartments in the San Francisco Bay Area, or list your own property."
+    />
+    <title>Home Rentals | Affordable rooms in the San Francisco Bay Area</title>
     <link rel="stylesheet" href="./style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
@@ -25,886 +27,755 @@
       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
       crossorigin=""
     ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
-      integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
-      integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <link rel="stylesheet" href="./accessibility.css" />
     <script defer src="app.js"></script>
-    <title>Home Rentals</title>
   </head>
   <body>
+    <a class="skip-link" href="#content">Skip to main content</a>
     <div class="hero">
-      <nav class="navbar" id="navbar">
-        <div class="logo">
-          <img src="./images/logo.svg" alt=" logo image" class="logo-img" />
-        </div>
-        <div class="navlinks">
-          <ul class="links-cont">
-            <li class="links">
-              <a href="#" class="link">Home</a>
-            </li>
-            <li class="links">
-              <a href="#" class="link">Landlords</a>
-            </li>
-            <li class="links">
-              <a href="#" class="link">Tenants</a>
-            </li>
-            <li class="links">
-              <a href="#" class="link">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-        <div class="menu-tag">
-          <img
-            src="./images/icon-menu.svg"
-            alt=" menu button"
-            class="menu-btn"
-            id="menu-btn"
-          />
-        </div>
-      </nav>
+      <header class="site-header">
+        <nav class="navbar" id="navbar" aria-label="Main">
+          <div class="logo">
+            <a href="#content">
+              <img
+                src="./images/logo.svg"
+                alt="Home Rentals, back to top"
+                class="logo-img"
+              />
+            </a>
+          </div>
+          <div class="navlinks" id="nav-links">
+            <ul class="links-cont">
+              <li class="links"><a href="#content" class="link">Home</a></li>
+              <li class="links">
+                <a href="#landlords" class="link">Landlords</a>
+              </li>
+              <li class="links">
+                <a href="#properties" class="link">Tenants</a>
+              </li>
+              <li class="links">
+                <a href="#contact" class="link">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+          <div class="menu-tag">
+            <button
+              type="button"
+              class="menu-btn"
+              id="menu-btn"
+              aria-expanded="false"
+              aria-controls="nav-links"
+            >
+              <img src="./images/icon-menu.svg" alt="" />
+              <span class="sr-only">Menu</span>
+            </button>
+          </div>
+        </nav>
+      </header>
 
-      <header class="hero-content">
+      <section
+        class="hero-content"
+        id="content"
+        aria-labelledby="hero-title"
+        tabindex="-1"
+      >
         <div class="hero-cont">
           <div class="hero-title-cont">
-            <h1 class="hero-info">
-              The most affordable area in the san fransico bay area
+            <h1 class="hero-info" id="hero-title">
+              The most affordable area in the San Francisco Bay Area
             </h1>
           </div>
           <div class="map-cont">
-            <div id="hero-map"></div>
+            <div
+              id="hero-map"
+              role="region"
+              aria-label="Map of available properties. The same listings appear in the list below the map."
+            ></div>
             <div class="hero-map">
-              <form action="" class="form-cont">
-                <label for="all-type"></label>
-                <input
-                  type="button"
-                  id="all-type"
-                  value="All Type"
-                  class="input-img"
-                />
-                <label for="location"></label>
+              <form
+                class="form-cont"
+                id="search-form"
+                role="search"
+                aria-label="Search properties"
+              >
+                <label for="all-type" class="sr-only">Property type</label>
+                <select id="all-type" name="type" class="input-img">
+                  <option value="">All types</option>
+                  <option value="Private room">Private room</option>
+                  <option value="Shared room">Shared room</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="House">House</option>
+                </select>
+                <label for="location" class="sr-only"
+                  >Search by address or city</label
+                >
                 <input
                   type="search"
                   id="location"
                   name="location"
-                  id="serach-btn"
+                  placeholder="Search by address or city"
+                  autocomplete="off"
                 />
+                <button type="submit" class="search-btn">Search</button>
               </form>
+              <button type="button" class="locate-btn" id="locate">
+                Show my location on the map
+              </button>
+              <p class="map-status" id="map-status" role="status"></p>
             </div>
           </div>
         </div>
-      </header>
+      </section>
     </div>
-    <main class="main">
-      <section class="features-section section">
-        <div class="section-center section--hidden">
-          <h2 class="features-title title">
-            <span class="underline"> Minimum living cost</span> takes care of
+
+    <main class="main" id="main">
+      <section
+        class="features-section section"
+        aria-labelledby="features-title"
+      >
+        <div class="section-center">
+          <h2 class="features-title title" id="features-title">
+            <span class="underline">Minimum living cost</span> takes care of
             everything
           </h2>
           <div class="features-content">
             <div class="features-icon">
               <div class="icons-center">
                 <div class="icon-cont">
-                  <img
-                    src="./images/dollar.svg"
-                    alt="dollar icon"
-                    class="icon"
-                  />
+                  <img src="./images/dollar.svg" alt="" class="icon" />
                 </div>
-                <p class="icon-text">pay as little as possible!</p>
+                <p class="icon-text">Pay as little as possible!</p>
               </div>
               <div class="icons-center">
                 <div class="icon-cont">
-                  <img src="./images/home.svg" alt="home icon" class="icon" />
+                  <img src="./images/home.svg" alt="" class="icon" />
                 </div>
-                <p class="icon-text">Enjoy Wisdom of Community!</p>
+                <p class="icon-text">Enjoy wisdom of community!</p>
               </div>
               <div class="icons-center">
                 <div class="icon-cont">
-                  <img
-                    src="./images/dashboard.svg"
-                    alt="dashboard icon"
-                    class="icon"
-                  />
+                  <img src="./images/dashboard.svg" alt="" class="icon" />
                 </div>
                 <p class="icon-text">
-                  let's sombody else take care of landlord!
+                  Let somebody else take care of the landlord!
                 </p>
               </div>
               <div class="icons-center">
                 <div class="icon-cont">
-                  <img
-                    src="./images/telephone.svg"
-                    alt="plant icon"
-                    class="icon"
-                  />
+                  <img src="./images/plant.svg" alt="" class="icon" />
                 </div>
-                <p class="icon-text">Enjoy Peaceful Environment!</p>
+                <p class="icon-text">Enjoy a peaceful environment!</p>
               </div>
               <div class="icons-center">
                 <div class="icon-cont">
-                  <img
-                    src="./images/shield.svg"
-                    alt="shield icon"
-                    class="icon"
-                  />
+                  <img src="./images/shield.svg" alt="" class="icon" />
                 </div>
-                <p class="icon-text">Stay safe! Save Money!</p>
+                <p class="icon-text">Stay safe! Save money!</p>
               </div>
               <div class="icons-center">
                 <div class="icon-cont">
-                  <img src="./images/eyes.svg" alt="eyes icon" class="icon" />
+                  <img src="./images/eyes.svg" alt="" class="icon" />
                 </div>
-                <p class="icon-text">pay for what you use!</p>
+                <p class="icon-text">Pay for what you use!</p>
               </div>
             </div>
             <div class="features-images">
-              <img src="./images/apartment.svg" alt="" class="feature-img" />
+              <img
+                src="./images/apartment.svg"
+                alt="A patio with a swimming pool at a rental home"
+                class="feature-img"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
       </section>
-      <!-- 
-=========================
-=========================
-Properties Section
-=========================
-=========================
-       -->
-      <section class="properties-section section">
-        <div class="section-center section--hidden">
+
+      <section
+        class="properties-section section"
+        id="properties"
+        aria-labelledby="properties-title"
+      >
+        <div class="section-center">
           <div class="title-cont">
-            <h2 class="title props-title">
-              <span class="underline">list</span> of properties
+            <h2 class="title props-title" id="properties-title">
+              <span class="underline">List</span> of properties
             </h2>
-            <button class="property-btn">view all property</button>
+            <button type="button" class="property-btn" id="show-all">
+              View all properties
+            </button>
           </div>
-          <div class="property-cont">
-            <div class="property-card">
+          <p class="result-count" id="result-count" role="status">
+            Showing 6 of 6 properties.
+          </p>
+          <ul class="property-cont" id="property-list">
+            <li
+              class="property-card"
+              id="property-1"
+              data-type="Private room"
+              data-lat="37.7556"
+              data-lng="-122.4144"
+              data-price="1200"
+            >
               <div class="prop-cont">
                 <img
                   src="./images/property-one.svg"
-                  alt="bedroom"
+                  alt="Bedroom with a large bed beside floor-to-ceiling windows"
                   class="prop-img"
+                  loading="lazy"
                 />
               </div>
               <div class="prop-content">
                 <div class="prop-header">
                   <div class="prop-div">
-                    <h4 class="prop-title">
-                      2578 Folsom Street, San Francisco, CA, 94110
-                    </h4>
-                    <h5 class="prop-room">private room</h5>
-                    <h4 class="prop-price">$1200/Month</h4>
+                    <h3 class="prop-title">
+                      2578 Folsom Street, San Francisco, CA 94110
+                    </h3>
+                    <p class="prop-room">Private room</p>
+                    <p class="prop-price">$1,200 per month</p>
                   </div>
-                  <div class="prop-icon-cont">
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/bed.svg"
-                        alt="bed icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">4</h6>
-                    </div>
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/shower.svg"
-                        alt="shower icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                    <div class="prop-icons">
-                      <img
-                        src="./images/hash.svg"
-                        alt="hash icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                  </div>
+                  <ul class="prop-icon-cont" aria-label="Property details">
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/bed.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bedrooms: </span>1
+                      </p>
+                    </li>
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/shower.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bathrooms: </span>1
+                      </p>
+                    </li>
+                    <li class="prop-icons">
+                      <img src="./images/hash.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Rooms: </span>1
+                      </p>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-            <div class="property-card">
+            </li>
+            <li
+              class="property-card"
+              id="property-2"
+              data-type="House"
+              data-lat="37.807"
+              data-lng="-122.2705"
+              data-price="3400"
+            >
               <div class="prop-cont">
                 <img
                   src="./images/property-two.svg"
-                  alt="bedroom"
+                  alt="Modern single-story home with glass doors beside a swimming pool"
                   class="prop-img"
+                  loading="lazy"
                 />
               </div>
               <div class="prop-content">
                 <div class="prop-header">
                   <div class="prop-div">
-                    <h4 class="prop-title">
-                      2578 Folsom Street, San Francisco, CA, 94110
-                    </h4>
-                    <h5 class="prop-room">private room</h5>
-                    <h4 class="prop-price">$1200/Month</h4>
+                    <h3 class="prop-title">
+                      1920 Telegraph Avenue, Oakland, CA 94612
+                    </h3>
+                    <p class="prop-room">House</p>
+                    <p class="prop-price">$3,400 per month</p>
                   </div>
-                  <div class="prop-icon-cont">
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/bed.svg"
-                        alt="bed icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">4</h6>
-                    </div>
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/shower.svg"
-                        alt="shower icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                    <div class="prop-icons">
-                      <img
-                        src="./images/hash.svg"
-                        alt="hash icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                  </div>
+                  <ul class="prop-icon-cont" aria-label="Property details">
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/bed.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bedrooms: </span>3
+                      </p>
+                    </li>
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/shower.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bathrooms: </span>2
+                      </p>
+                    </li>
+                    <li class="prop-icons">
+                      <img src="./images/hash.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Rooms: </span>5
+                      </p>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-            <div class="property-card">
+            </li>
+            <li
+              class="property-card"
+              id="property-3"
+              data-type="Apartment"
+              data-lat="37.767"
+              data-lng="-122.422"
+              data-price="2600"
+            >
               <div class="prop-cont">
                 <img
                   src="./images/property-three.svg"
-                  alt="bedroom"
+                  alt="Open living room with a gray sofa, a wood accent wall and a kitchen behind"
                   class="prop-img"
+                  loading="lazy"
                 />
               </div>
               <div class="prop-content">
                 <div class="prop-header">
                   <div class="prop-div">
-                    <h4 class="prop-title">
-                      2578 Folsom Street, San Francisco, CA, 94110
-                    </h4>
-                    <h5 class="prop-room">private room</h5>
-                    <h4 class="prop-price">$1200/Month</h4>
+                    <h3 class="prop-title">
+                      410 Valencia Street, San Francisco, CA 94103
+                    </h3>
+                    <p class="prop-room">Apartment</p>
+                    <p class="prop-price">$2,600 per month</p>
                   </div>
-                  <div class="prop-icon-cont">
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/bed.svg"
-                        alt="bed icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">4</h6>
-                    </div>
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/shower.svg"
-                        alt="shower icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                    <div class="prop-icons">
-                      <img
-                        src="./images/hash.svg"
-                        alt="hash icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                  </div>
+                  <ul class="prop-icon-cont" aria-label="Property details">
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/bed.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bedrooms: </span>2
+                      </p>
+                    </li>
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/shower.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bathrooms: </span>1
+                      </p>
+                    </li>
+                    <li class="prop-icons">
+                      <img src="./images/hash.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Rooms: </span>4
+                      </p>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-            <div class="property-card">
+            </li>
+            <li
+              class="property-card"
+              id="property-4"
+              data-type="Apartment"
+              data-lat="37.87"
+              data-lng="-122.268"
+              data-price="2100"
+            >
               <div class="prop-cont">
                 <img
                   src="./images/property-four.svg"
-                  alt="bedroom"
+                  alt="Living room with a sectional sofa and glass doors that open to a patio"
                   class="prop-img"
+                  loading="lazy"
                 />
               </div>
               <div class="prop-content">
                 <div class="prop-header">
                   <div class="prop-div">
-                    <h4 class="prop-title">
-                      2578 Folsom Street, San Francisco, CA, 94110
-                    </h4>
-                    <h5 class="prop-room">private room</h5>
-                    <h4 class="prop-price">$1200/Month</h4>
+                    <h3 class="prop-title">
+                      88 Shattuck Avenue, Berkeley, CA 94704
+                    </h3>
+                    <p class="prop-room">Apartment</p>
+                    <p class="prop-price">$2,100 per month</p>
                   </div>
-                  <div class="prop-icon-cont">
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/bed.svg"
-                        alt="bed icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">4</h6>
-                    </div>
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/shower.svg"
-                        alt="shower icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                    <div class="prop-icons">
-                      <img
-                        src="./images/hash.svg"
-                        alt="hash icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                  </div>
+                  <ul class="prop-icon-cont" aria-label="Property details">
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/bed.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bedrooms: </span>2
+                      </p>
+                    </li>
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/shower.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bathrooms: </span>1
+                      </p>
+                    </li>
+                    <li class="prop-icons">
+                      <img src="./images/hash.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Rooms: </span>3
+                      </p>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-            <div class="property-card">
+            </li>
+            <li
+              class="property-card"
+              id="property-5"
+              data-type="Shared room"
+              data-lat="37.811"
+              data-lng="-122.26"
+              data-price="850"
+            >
               <div class="prop-cont">
                 <img
                   src="./images/property-five.svg"
-                  alt="bedroom"
+                  alt="Wooden staircase with a black railing and hanging gold pendant lamps"
                   class="prop-img"
+                  loading="lazy"
                 />
               </div>
               <div class="prop-content">
                 <div class="prop-header">
                   <div class="prop-div">
-                    <h4 class="prop-title">
-                      2578 Folsom Street, San Francisco, CA, 94110
-                    </h4>
-                    <h5 class="prop-room">private room</h5>
-                    <h4 class="prop-price">$1200/Month</h4>
+                    <h3 class="prop-title">
+                      505 Grand Avenue, Oakland, CA 94610
+                    </h3>
+                    <p class="prop-room">Shared room</p>
+                    <p class="prop-price">$850 per month</p>
                   </div>
-                  <div class="prop-icon-cont">
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/bed.svg"
-                        alt="bed icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">4</h6>
-                    </div>
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/shower.svg"
-                        alt="shower icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                    <div class="prop-icons">
-                      <img
-                        src="./images/hash.svg"
-                        alt="hash icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                  </div>
+                  <ul class="prop-icon-cont" aria-label="Property details">
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/bed.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bedrooms: </span>2
+                      </p>
+                    </li>
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/shower.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bathrooms: </span>1
+                      </p>
+                    </li>
+                    <li class="prop-icons">
+                      <img src="./images/hash.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Rooms: </span>1
+                      </p>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-            <div class="property-card">
+            </li>
+            <li
+              class="property-card"
+              id="property-6"
+              data-type="Private room"
+              data-lat="37.741"
+              data-lng="-122.4228"
+              data-price="1050"
+            >
               <div class="prop-cont">
                 <img
                   src="./images/property-six.svg"
-                  alt="bedroom"
+                  alt="Living area with two yellow armchairs next to a wooden staircase"
                   class="prop-img"
+                  loading="lazy"
                 />
               </div>
               <div class="prop-content">
                 <div class="prop-header">
                   <div class="prop-div">
-                    <h4 class="prop-title">
-                      2578 Folsom Street, San Francisco, CA, 94110
-                    </h4>
-                    <h5 class="prop-room">private room</h5>
-                    <h4 class="prop-price">$1200/Month</h4>
+                    <h3 class="prop-title">
+                      3300 Mission Street, San Francisco, CA 94110
+                    </h3>
+                    <p class="prop-room">Private room</p>
+                    <p class="prop-price">$1,050 per month</p>
                   </div>
-                  <div class="prop-icon-cont">
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/bed.svg"
-                        alt="bed icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">4</h6>
-                    </div>
-                    <div class="prop-icons prop-icon-two">
-                      <img
-                        src="./images/shower.svg"
-                        alt="shower icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                    <div class="prop-icons">
-                      <img
-                        src="./images/hash.svg"
-                        alt="hash icon"
-                        class="prop-icon"
-                      />
-                      <h6 class="icon-num">2</h6>
-                    </div>
-                  </div>
+                  <ul class="prop-icon-cont" aria-label="Property details">
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/bed.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bedrooms: </span>1
+                      </p>
+                    </li>
+                    <li class="prop-icons prop-icon-two">
+                      <img src="./images/shower.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Bathrooms: </span>1
+                      </p>
+                    </li>
+                    <li class="prop-icons">
+                      <img src="./images/hash.svg" alt="" class="prop-icon" />
+                      <p class="icon-num">
+                        <span class="sr-only">Rooms: </span>1
+                      </p>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="prop-num">
-            <button class="first num-btn">First</button>
-            <button class="second num-btn">1</button>
-            <button class="third num-btn">2</button>
-            <button class="fourth num-btn">3</button>
-            <button class="fifth num-btn">Next</button>
-          </div>
+            </li>
+          </ul>
         </div>
       </section>
-      <!-- 
-=========================
-=========================
-Lifestyle Section
-=========================
-=========================
-       -->
-      <section class="lifestyle-section section">
-        <div class="section-center section--hidden">
+
+      <section
+        class="lifestyle-section section"
+        aria-labelledby="lifestyle-title"
+      >
+        <div class="section-center">
           <div class="lifestyle-center">
             <div class="lifestyle-content">
-              <h2 class="lifestyle-title title">
+              <h2 class="lifestyle-title title" id="lifestyle-title">
                 Flexibility and options to suit your lifestyle
               </h2>
               <p class="lifestyle-para">
-                You need it? We got it. We make finding your next home easy,
+                You need it? We have it. We make finding your next home easy,
                 comfortable, and simple. From our happiness guarantee to our
-                selective roommate finder option. We provide you the flexibility
-                that you most desire.
+                selective roommate finder option, we give you the flexibility
+                you want most.
               </p>
-              <button class="life-btn">search rooms</button>
+              <a class="life-btn" href="#properties">Search rooms</a>
             </div>
-
             <div class="lifestyle-image-center">
-              <div class="lifestyle-grid">
-                <div class="lifestyle-images image-1 life-anim">
-                  <p class="life-img-text">flexible leases</p>
-                </div>
-                <div class="lifestyle-images image-2 life-anim">
-                  <p class="life-img-text">7-Day happiness</p>
-                </div>
-              </div>
-              <div class="lifestyle-grid">
-                <div class="lifestyle-images image-3 life-anim">
+              <ul class="lifestyle-grid">
+                <li class="lifestyle-images image-1 life-anim">
+                  <p class="life-img-text">Flexible leases</p>
+                </li>
+                <li class="lifestyle-images image-2 life-anim">
+                  <p class="life-img-text">7-day happiness guarantee</p>
+                </li>
+                <li class="lifestyle-images image-3 life-anim">
                   <p class="life-img-text">Monthly house cleaning</p>
-                </div>
-                <div class="lifestyle-images image-4 life-anim">
-                  <p class="life-img-text">choose your own roommate</p>
-                </div>
-              </div>
+                </li>
+                <li class="lifestyle-images image-4 life-anim">
+                  <p class="life-img-text">Choose your own roommate</p>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
-      <!-- 
-        ==========================
-        ==========================
-        Form Section
-        ==========================
-        ==========================
-      -->
-      <section class="form-section section">
-        <div class="section-center section--hidden">
-          <h2 class="form-title">
-            Your property with us and be confident that your room will be filled
-            out.
+
+      <section
+        class="form-section section"
+        id="landlords"
+        aria-labelledby="landlords-title"
+      >
+        <div class="section-center">
+          <h2 class="form-title" id="landlords-title">
+            List your property with us and be confident your room will be
+            filled.
           </h2>
           <div class="form-center">
             <h3 class="form-title-2">Add a new property</h3>
-
-            <form>
+            <p class="form-intro">
+              Fields marked with an asterisk (<span aria-hidden="true">*</span
+              ><span class="sr-only">star</span>) are required.
+            </p>
+            <form id="add-form" novalidate>
+              <div
+                class="form-errors"
+                id="form-errors"
+                role="group"
+                aria-labelledby="form-errors-title"
+                tabindex="-1"
+                hidden
+              >
+                <h4 class="form-errors-title" id="form-errors-title">
+                  Please fix these problems
+                </h4>
+                <ul id="form-errors-list"></ul>
+              </div>
               <div class="forms-sec-center">
                 <div class="form-div">
                   <label for="name" class="prop-label"
-                    >Name<span class="star"> *</span></label
+                    >Your name <span class="star" aria-hidden="true">*</span
+                    ><span class="sr-only">(required)</span></label
                   >
-                  <input type="text" id="name" name="name" class="input-form" />
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="input-form"
+                    autocomplete="name"
+                    aria-required="true"
+                  />
+                  <p class="field-error" id="name-error" hidden></p>
                 </div>
                 <div class="form-div">
                   <label for="address" class="prop-label"
-                    >Address<span class="star"> *</span></label
+                    >Property address
+                    <span class="star" aria-hidden="true">*</span
+                    ><span class="sr-only">(required)</span></label
                   >
                   <input
                     type="text"
                     id="address"
                     name="address"
                     class="input-form"
+                    autocomplete="address-line1"
+                    aria-required="true"
                   />
+                  <p class="field-error" id="address-error" hidden></p>
                 </div>
                 <div class="form-div">
                   <label for="unit" class="prop-label"
-                    >Unit Number<span class="star"> *</span></label
+                    >Unit number <span class="star" aria-hidden="true">*</span
+                    ><span class="sr-only">(required)</span></label
                   >
                   <input
-                    type="number"
+                    type="text"
                     id="unit"
                     name="unit"
                     class="input-form"
+                    autocomplete="address-line2"
+                    aria-required="true"
                   />
+                  <p class="field-error" id="unit-error" hidden></p>
                 </div>
-
-                <!-- Dropdown button -->
-                <div class="dropdown form-div">
+                <div class="form-div">
                   <label for="city" class="prop-label"
-                    >City<span class="star"> *</span></label
+                    >City <span class="star" aria-hidden="true">*</span
+                    ><span class="sr-only">(required)</span></label
                   >
-                  <button
-                    class="btn btn-default dropdown-toggle"
-                    type="button"
-                    data-toggle="dropdown"
+                  <select
                     id="city"
+                    name="city"
+                    class="input-form"
+                    autocomplete="address-level2"
+                    aria-required="true"
                   >
-                    <span class="text-btn">Select City</span>
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                  </ul>
+                    <option value="">Select a city</option>
+                    <option value="San Francisco">San Francisco</option>
+                    <option value="Oakland">Oakland</option>
+                    <option value="Berkeley">Berkeley</option>
+                    <option value="San Jose">San Jose</option>
+                    <option value="Daly City">Daly City</option>
+                  </select>
+                  <p class="field-error" id="city-error" hidden></p>
                 </div>
-                <!--End of Dropdown button -->
-                <!-- Dropdown button -->
-                <div class="dropdown form-div">
-                  <label for="city" class="prop-label"
-                    >City<span class="star"> *</span></label
-                  >
-                  <button
-                    class="btn btn-default dropdown-toggle"
-                    type="button"
-                    data-toggle="dropdown"
-                    id="city"
-                  >
-                    <span class="text-btn">Select City</span>
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                  </ul>
-                </div>
-                <!--End of Dropdown button -->
-                <!-- Dropdown button -->
-                <div class="dropdown form-div">
-                  <label for="city" class="prop-label"
-                    >City<span class="star"> *</span></label
-                  >
-                  <button
-                    class="btn btn-default dropdown-toggle"
-                    type="button"
-                    data-toggle="dropdown"
-                    id="city"
-                  >
-                    <span class="text-btn">Select City</span>
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                  </ul>
-                </div>
-                <!--End of Dropdown button -->
-                <!-- Dropdown button -->
-                <div class="dropdown form-div">
-                  <label for="city" class="prop-label"
-                    >City<span class="star"> *</span></label
-                  >
-                  <button
-                    class="btn btn-default dropdown-toggle"
-                    type="button"
-                    data-toggle="dropdown"
-                    id="city"
-                  >
-                    <span class="text-btn">Select City</span>
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                  </ul>
-                </div>
-                <!--End of Dropdown button -->
-                <!-- Dropdown button -->
-                <div class="dropdown form-div">
-                  <label for="city" class="prop-label"
-                    >City<span class="star"> *</span></label
-                  >
-                  <button
-                    class="btn btn-default dropdown-toggle"
-                    type="button"
-                    data-toggle="dropdown"
-                    id="city"
-                  >
-                    <span class="text-btn">Select City</span>
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                    <li class="dropdown-header">Ikeja</li>
-                  </ul>
-                </div>
-                <!--End of Dropdown button -->
               </div>
               <div class="form-div desc-cont">
                 <label for="description" class="prop-label"
-                  >Description<span class="star">*</span></label
+                  >Description <span class="star" aria-hidden="true">*</span
+                  ><span class="sr-only">(required)</span></label
                 >
+                <p class="field-hint" id="description-hint">
+                  Use at least 20 characters. Mention room type, rent, and what
+                  is included.
+                </p>
                 <textarea
                   id="description"
                   name="description"
                   class="desc"
+                  aria-required="true"
+                  aria-describedby="description-hint"
                 ></textarea>
+                <p class="field-error" id="description-error" hidden></p>
               </div>
-              <!-- <label for="city">City<span class="star">*</span></label>
-              <select
-                placeholder="city"
-                id="city"
-                class="btn btn-default select-city dropdown-toggle"
-              >
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </select> -->
-
-              <!-- <label for="select-tools">City<span class="star">*</span></label>
-              <select
-                id="select-tools"
-                multiple
-                placeholder="City"
-                type="button"
-                data-toggle="dropdown"
-              ></select> -->
-              <!-- <button id="button-clear">clear</button> -->
+              <button type="submit" class="submit-btn">Add property</button>
+              <p class="form-success" id="form-success" role="status"></p>
             </form>
           </div>
         </div>
       </section>
-      <!-- 
-        ==========================
-        ==========================
-        Testimonial Section
-        ==========================
-        ==========================
-      -->
-      <section class="section testimonial-section">
-        <div class="section--hidden">
+
+      <section
+        class="section testimonial-section"
+        aria-roledescription="carousel"
+        aria-labelledby="testimonials-title"
+      >
+        <div>
           <div class="section-center testimonial-center">
+            <h2 class="sr-only" id="testimonials-title">
+              What property owners say
+            </h2>
             <div class="test-video-center">
               <div class="test-vid-cont">
                 <img
                   src="./images/testimonial-cover.svg"
                   alt=""
                   class="test-img"
+                  loading="lazy"
                 />
               </div>
             </div>
-            <div class="test-content-center">
-              <div class="test-content">
+            <div class="test-content-center" id="test-slides">
+              <div
+                class="test-content"
+                role="group"
+                aria-roledescription="slide"
+                aria-label="1 of 3"
+              >
                 <blockquote class="test-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                  interdum nisl et nunc facilisis, a commodo eros mollis. Nunc
-                  vel pellentesque est. Curabitur at odio sit amet libero
-                  vulputate efficitur ac nec justo. Nulla vitae mauris quam.
-                  Nulla quam massa, faucibus id pretium ac, mattis eu velit.
-                  Donec sed risus a lacus fringilla finibus.
+                  <p>
+                    Sample testimonial: My room was listed on Monday and filled
+                    within two weeks. The paperwork was simple.
+                  </p>
                 </blockquote>
-                <img
-                  src="./images/quotes.svg"
-                  alt="quotation mark"
-                  class="quotes"
-                />
+                <img src="./images/quotes.svg" alt="" class="quotes" />
                 <div class="test-person-cont">
-                  <div class="test-img-cont">
-                    <img
-                      src="./images/person-comment.svg"
-                      alt="Harry Wilson"
-                      class="text-img"
-                    />
-                  </div>
                   <div class="test-person">
-                    <h5 class="person-name">Harry Wilson</h5>
-                    <h5 class="person-job">Property Owner</h5>
+                    <p class="person-name">Amara O.</p>
+                    <p class="person-job">Property owner</p>
                   </div>
                 </div>
               </div>
-              <!-- second quote -->
-              <div class="test-content">
+              <div
+                class="test-content"
+                role="group"
+                aria-roledescription="slide"
+                aria-label="2 of 3"
+              >
                 <blockquote class="test-text">
-                  dum nisl et nunc facilisis, a commodo eros mollis. Nunc vel
-                  pellentesque est. Curabitur at odio sit amet libero vulputate
-                  efficitur ac nec justo. Nulla vitae mauris quam. Nulla quam
-                  massa, faucibus id pretium ac, mattis eu velit. Donec sed
-                  risus a lacus fringilla finibus.
+                  <p>
+                    Sample testimonial: I like that tenants are matched with
+                    care. It saved me a lot of time.
+                  </p>
                 </blockquote>
-                <img
-                  src="./images/quotes.svg"
-                  alt="quotation mark"
-                  class="quotes"
-                />
+                <img src="./images/quotes.svg" alt="" class="quotes" />
                 <div class="test-person-cont">
-                  <div class="test-img-cont">
-                    <img
-                      src="./images/person-comment.svg"
-                      alt="Harry Wilson"
-                      class="text-img"
-                    />
-                  </div>
                   <div class="test-person">
-                    <h5 class="person-name">Harry Wilson</h5>
-                    <h5 class="person-job">Property Owner</h5>
+                    <p class="person-name">Daniel R.</p>
+                    <p class="person-job">Property owner</p>
                   </div>
                 </div>
               </div>
-              <!-- Third quote -->
-              <div class="test-content">
+              <div
+                class="test-content"
+                role="group"
+                aria-roledescription="slide"
+                aria-label="3 of 3"
+              >
                 <blockquote class="test-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                  interdum nisl et nunc facilisis, a commodo eros mollis. Nunc
-                  vel pellentesque est. Curabitur us fringilla finibus.
+                  <p>
+                    Sample testimonial: Clear communication from start to
+                    finish, and the monthly check-ins are helpful.
+                  </p>
                 </blockquote>
-                <img
-                  src="./images/quotes.svg"
-                  alt="quotation mark"
-                  class="quotes"
-                />
+                <img src="./images/quotes.svg" alt="" class="quotes" />
                 <div class="test-person-cont">
-                  <div class="test-img-cont">
-                    <img
-                      src="./images/person-comment.svg"
-                      alt="Harry Wilson"
-                      class="text-img"
-                    />
-                  </div>
                   <div class="test-person">
-                    <h5 class="person-name">Harry Wilson</h5>
-                    <h5 class="person-job">Property Owner</h5>
+                    <p class="person-name">Priya S.</p>
+                    <p class="person-job">Property owner</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="test-dots"></div>
+            <div class="test-dots" id="test-controls"></div>
           </div>
         </div>
       </section>
-      <!-- 
-        ==========================
-        ==========================
-        End of Testimonial Section
-        ==========================
-        ==========================
-      -->
     </main>
-    <!-- 
-        ==========================
-        ==========================
-        Footer Section
-        ==========================
-        ==========================
-               
-      -->
-    <footer class="footer section">
-      <div class="section-center section--hidden">
+
+    <footer class="footer section" id="contact">
+      <div class="section-center">
         <div class="footer-border"></div>
         <div class="foot-center">
-          <!-- <img src="./images/logo.svg" alt="" class="footer-logo" /> -->
-          <div class="footer-logo">Logo</div>
+          <h2 class="footer-logo">Home Rentals</h2>
           <div class="foot-icons">
             <div class="foot-location">
-              <img
-                src="./images/location.svg"
-                alt="location"
-                class="location"
-              />
+              <img src="./images/location.svg" alt="" class="location" />
               <p class="foot-icon-text">
-                345 Faulconer Drive, Suite 4 • Charlottesville, CA, 12345
+                <span class="sr-only">Address: </span>345 Faulconer Drive, Suite
+                4 • Charlottesville, CA 12345
               </p>
             </div>
             <div class="foot-tel-fax">
               <div class="foot-tel">
-                <img
-                  src="./images/telephone.svg"
-                  alt="telephone"
-                  class="telephone"
-                />
-                <p class="foot-icon-text">(123) 456-7890</p>
+                <img src="./images/telephone.svg" alt="" class="telephone" />
+                <p class="foot-icon-text">
+                  <span class="sr-only">Phone: </span>(123) 456-7890
+                </p>
               </div>
               <div class="foot-fax">
-                <img src="./images/fax.svg" alt="fax" class="fax" />
-                <p class="foot-icon-text">(123) 456-7890</p>
-              </div>
-            </div>
-            <div class="foot-social">
-              <p class="social-text soc-media">Social Media</p>
-              <div class="foot-social-icons">
-                <img
-                  src="./images/facebook.svg"
-                  alt="facebook icon"
-                  class="social-img"
-                />
-                <img
-                  src="./images/twitter.svg"
-                  alt="twitter icon"
-                  class="social-img"
-                />
-                <img
-                  src="./images/LinkedIn.svg"
-                  alt="LinkedIn"
-                  class="social-img"
-                />
-                <img
-                  src="./images/Youtube.svg"
-                  alt="Youtube"
-                  class="social-img"
-                />
-                <img
-                  src="./images/Instagram.svg"
-                  alt="Instagram"
-                  class="social-img"
-                />
-                <img
-                  src="./images/GooglePlus.svg"
-                  alt="GooglePlus"
-                  class="social-img"
-                />
-                <img
-                  src="./images/Pinterest.svg"
-                  alt="Pinterest"
-                  class="social-img"
-                />
-                <img src="./images/RSS.svg" alt="RSS " class="social-img" />
+                <img src="./images/fax.svg" alt="" class="fax" />
+                <p class="foot-icon-text">
+                  <span class="sr-only">Fax: </span>(123) 456-7890
+                </p>
               </div>
             </div>
           </div>
@@ -912,15 +783,15 @@ Lifestyle Section
         <div class="copy-foot">
           <div class="foot-links">
             <ul class="footer-links">
-              <li class="foot-link-list">about us</li>
-              <li class="foot-link-list">contact us</li>
-              <li class="foot-link-list">help</li>
-              <li class="foot-link-list">privacy policy</li>
-              <li class="foot-link-list">disclaimer</li>
+              <li class="foot-link-list">
+                <a href="#landlords">List a property</a>
+              </li>
+              <li class="foot-link-list"><a href="#content">Back to top</a></li>
             </ul>
           </div>
           <p class="copyright social-text">
-            Copyright &#169; 2020 Minimumlivingcost. All right reserved
+            Copyright &#169; 2026 Home Rentals. Sample site with placeholder
+            listings and contact details.
           </p>
         </div>
         <p class="creator">Developed by Jeremiah Lateef</p>
