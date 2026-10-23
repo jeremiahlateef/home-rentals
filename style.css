@@ -116,9 +116,7 @@ body {
   border-bottom: 0.5px solid #fff;
   /* border: 2px solid red; */
 }
-#navbar {
-  /* border: 2px solid red; */
-}
+
 .navbar.sticky {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.95);
