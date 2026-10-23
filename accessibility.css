@@ -1,0 +1,548 @@
+/* ==========================================================================
+   accessibility.css
+   Loaded AFTER Bootstrap and style.css so these rules take precedence.
+   Targets WCAG 2.1 AA, with 2.2 AA checks for target size and focus.
+   ========================================================================== */
+
+/* ---------- Utilities ---------- */
+
+/* Visually hidden, still announced by screen readers (1.3.1, 4.1.2) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link, visible when focused (2.4.1) */
+.skip-link {
+  position: absolute;
+  left: 1.6rem;
+  top: -8rem;
+  z-index: 1000;
+  padding: 1.2rem 2rem;
+  background: #fff;
+  color: #0a142f;
+  border: 3px solid #0a142f;
+  border-radius: 6px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 1.6rem;
+}
+
+/* ---------- Base ---------- */
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+/* ---------- Focus (2.4.7, 2.4.11) ----------
+   Two-tone ring: blue outline plus a white halo so it shows on light
+   backgrounds and on the dark hero photo. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+.leaflet-container:focus-visible,
+.leaflet-marker-icon:focus-visible,
+.leaflet-control a:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
+}
+/* Containers that only receive focus from a script or skip link */
+[tabindex="-1"]:focus {
+  outline: none;
+}
+.form-errors:focus {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+/* ---------- Hero and navigation ---------- */
+
+/* White text sits on a photo, so add a uniform overlay under the original
+   gradient. Measured against the brightest part of the image, nav links and
+   the headline now stay above 4.5:1 (1.4.3). */
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    linear-gradient(
+      200.44deg,
+      rgba(0, 0, 0, 0.0001) 16.41%,
+      rgba(0, 0, 0, 0.51) 77.16%
+    ),
+    url("./images/hero-image.webp") center/cover no-repeat;
+}
+
+.link {
+  display: inline-block;
+  min-height: 44px;
+  text-decoration: none;
+  /* Only animate colour, so the focus ring appears instantly */
+  transition: color 0.2s linear, border-color 0.2s linear;
+}
+.link:hover,
+.link:focus-visible {
+  color: #fff;
+  border-bottom: 2.32px solid #fff;
+}
+.logo a {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.8rem;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .navlinks {
+    order: 3;
+    width: 100%;
+  }
+  .navlinks.open {
+    display: block;
+  }
+  .links-cont {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background: rgba(10, 20, 47, 0.92);
+    border-radius: 8px;
+  }
+  .link {
+    display: block;
+    padding: 1.2rem 1rem;
+  }
+}
+
+/* ---------- Search form and map ---------- */
+
+.form-cont {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+.form-cont select,
+.form-cont input[type="search"] {
+  flex: 1 1 14rem;
+  min-height: 44px;
+  padding: 0.8rem 1rem;
+  font-size: 1.6rem;
+  color: #18191f;
+  background-color: #fff;
+  border: 1px solid #595959;
+  border-radius: 5px;
+}
+.form-cont .input-img {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 3.6rem;
+  background: #fff url("./images/arrow-down.svg") no-repeat right 1.2rem center / 1.4rem auto;
+}
+.form-cont ::placeholder {
+  color: #595959;
+  opacity: 1;
+}
+.search-btn,
+.locate-btn {
+  min-height: 44px;
+  padding: 0.8rem 2rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.search-btn {
+  color: #fff;
+  background: var(--primary-clr-1);
+  border: 2px solid var(--primary-clr-1);
+}
+.search-btn:hover {
+  background: #9a3412;
+  border-color: #9a3412;
+}
+.locate-btn {
+  display: block;
+  width: 85%;
+  margin: 1rem auto 0;
+  color: #0a142f;
+  background: #fff;
+  border: 2px solid #0a142f;
+}
+.locate-btn:hover {
+  background: #e5e5e5;
+}
+.map-status {
+  width: 85%;
+  margin: 1rem auto 0;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.4rem;
+  color: #fff;
+  background: rgba(10, 20, 47, 0.92);
+  border-radius: 5px;
+}
+.map-status:empty {
+  display: none;
+}
+.leaflet-container a {
+  color: #0b5a82;
+}
+
+/* ---------- Features ---------- */
+
+.icon-text {
+  font-size: 1.4rem;
+}
+@media screen and (min-width: 768px) {
+  .icon-text {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- Property list ---------- */
+
+.property-btn {
+  min-height: 44px;
+  cursor: pointer;
+}
+.result-count {
+  margin-bottom: 2rem;
+  font-family: var(--family-3);
+  font-weight: 600;
+  color: #18191f;
+}
+.property-cont,
+.prop-icon-cont,
+.lifestyle-grid,
+.footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.property-card[hidden] {
+  display: none;
+}
+.prop-room {
+  font-size: 1.4rem;
+}
+.icon-num {
+  margin: 0;
+  font-size: 1.4rem;
+}
+.prop-title {
+  font-size: 1.6rem;
+}
+.prop-price {
+  font-size: 1.8rem;
+}
+.prop-icons {
+  list-style: none;
+}
+
+/* ---------- Lifestyle ---------- */
+
+.life-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  min-height: 44px;
+}
+.life-btn:hover {
+  background: #9a3412;
+  color: #fff;
+}
+/* Darker overlay so the white caption stays readable on every photo (1.4.3) */
+.lifestyle-images::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.35);
+}
+.life-img-text {
+  z-index: 1;
+  width: 90%;
+  font-size: 1.8rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+@media screen and (min-width: 768px) {
+  .lifestyle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    column-gap: 2rem;
+    align-items: start;
+  }
+  .life-img-text {
+    font-size: 1.8rem;
+  }
+}
+
+/* ---------- Form ---------- */
+
+.form-intro {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.form-div .prop-label {
+  margin-bottom: 0.6rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.input-form,
+.desc {
+  min-height: 44px;
+  font-size: 1.6rem;
+  color: #18191f;
+  border: 1px solid #595959;
+}
+.desc {
+  min-height: 12rem;
+}
+.field-hint {
+  margin: 0 0 0.6rem;
+  font-size: 1.4rem;
+  color: #595959;
+}
+.field-error {
+  margin: 0.6rem 0 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #b42318;
+}
+[aria-invalid="true"] {
+  border: 2px solid #b42318;
+}
+.form-errors {
+  margin-bottom: 2rem;
+  padding: 1.6rem;
+  background: #fff5f5;
+  border: 3px solid #b42318;
+  border-radius: 6px;
+}
+.form-errors-title {
+  margin: 0 0 1rem;
+  font-size: 1.8rem;
+  color: #7a1a12;
+}
+.form-errors ul {
+  margin: 0;
+  padding-left: 2rem;
+  list-style: disc;
+}
+.form-errors li {
+  list-style: disc;
+}
+.form-errors a {
+  font-weight: 700;
+  color: #b42318;
+  text-decoration: underline;
+}
+.form-errors[hidden],
+.field-error[hidden],
+.form-success:empty {
+  display: none;
+}
+.submit-btn {
+  display: block;
+  min-height: 48px;
+  margin-top: 1rem;
+  padding: 1.2rem 3.2rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--primary-clr-1);
+  border: 2px solid var(--primary-clr-1);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.submit-btn:hover {
+  background: #9a3412;
+  border-color: #9a3412;
+}
+.form-success {
+  margin-top: 1.6rem;
+  padding: 1.2rem 1.6rem;
+  color: #0f5132;
+  background: #ecfdf3;
+  border: 2px solid #0f5132;
+  border-radius: 6px;
+}
+
+/* ---------- Testimonial carousel ----------
+   All slides share one grid cell, so the box grows with the longest quote and
+   text never gets clipped when users enlarge text or view at 320 px (1.4.4, 1.4.10). */
+
+.test-content-center {
+  display: grid;
+  height: auto;
+  overflow: hidden;
+}
+.test-content {
+  position: relative;
+  top: auto;
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  padding: 0 0.5rem;
+}
+.test-text {
+  margin-bottom: 1.6rem;
+  border-left: 0;
+}
+.test-text p {
+  margin: 0;
+}
+.person-name,
+.person-job {
+  margin: 0;
+}
+.person-job {
+  font-size: 1.4rem;
+}
+.test-dots {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.4rem;
+  transform: none;
+}
+.test-nav-btn {
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: #18191f;
+  background: #fff;
+  border: 2px solid #18191f;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.test-nav-btn:hover {
+  background: #e5e5e5;
+}
+/* Dot is drawn by a pseudo-element so the button itself is 24 px (2.5.8) */
+.test-dots_dot {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin: 0;
+  background: transparent;
+  opacity: 1;
+}
+.test-dots_dot::before {
+  content: "";
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: 50%;
+  background: #767676;
+}
+.test-dots_dot[aria-current="true"]::before {
+  inset: 0.2rem;
+  background: #18191f;
+}
+
+/* ---------- Footer ---------- */
+
+.footer-logo {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+.foot-link-list a {
+  color: inherit;
+  text-decoration: underline;
+}
+.foot-link-list a:hover {
+  text-decoration: none;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- User preferences ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .search-btn,
+  .submit-btn,
+  .locate-btn,
+  .menu-btn,
+  .test-nav-btn,
+  .property-btn,
+  .life-btn {
+    border: 2px solid ButtonText;
+  }
+  .test-dots_dot::before {
+    background: ButtonText;
+  }
+}
+
+/* ---------- Layout fixes found while testing ---------- */
+
+/* Bootstrap adds clearfix pseudo-elements to .navbar; inside a flex row they
+   become empty items and push the logo and menu button away from the edges. */
+.navbar::before,
+.navbar::after {
+  display: none;
+}
+
+/* The cover photo had no size limit (the old rule targeted a class that does not exist). */
+.test-vid-cont {
+  max-width: 70rem;
+  height: 24rem;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 1.2rem;
+}
+.test-text {
+  font-size: 1.8rem;
+}
+@media screen and (min-width: 768px) {
+  .test-vid-cont {
+    height: 36rem;
+  }
+  .test-text {
+    font-size: 2rem;
+  }
+}
